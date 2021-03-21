@@ -141,14 +141,14 @@ export const ShopNavigator = () => {
             options={
                 {
             drawerIcon: props => ( 
-              <Icon name='md-cart' size={23} color={props.Color} /> )
+              <Icon name='shopping-basket' size={23} color={props.Color} /> )
                         }
             } />
               <ShopDrawerNavigator.Screen name="Orders" 
             component={OrdersNavigator} options={
                 {
              drawerIcon: props => ( 
-         <Icon name='md-list' size={23} color={props.Color} /> )
+         <Icon name='list-ul' size={23} color={props.Color} /> )
                         }
             } />
               <ShopDrawerNavigator.Screen name="Admin" 
@@ -156,7 +156,7 @@ export const ShopNavigator = () => {
             options={
                 {
                  drawerIcon: props => ( 
-                 <Icon name='md-create' size={23} color={props.Color} /> )
+                 <Icon name='user' size={23} color={props.Color} /> )
                         }
             } />
         </ShopDrawerNavigator.Navigator>

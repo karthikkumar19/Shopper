@@ -55,12 +55,12 @@ export const screenOptions =navData => {
     return{
         headerTitle: 'User Products',
         headerLeft : () => <HeaderButtons HeaderButtonComponent={Headerbutton}>
-        <Item title='Menu' iconName={'md-menu'} onPress={() => {
+        <Item title='Menu' iconName={'bars'} onPress={() => {
             navData.navigation.toggleDrawer();
         }} />
     </HeaderButtons>,
     headerRight: () => <HeaderButtons HeaderButtonComponent={Headerbutton}>
-    <Item title='Add' iconName={'md-create'} onPress={() => {
+    <Item title='Add' iconName={'plus'} onPress={() => {
         navData.navigation.navigate('EditProduct');
     }} />
 </HeaderButtons>

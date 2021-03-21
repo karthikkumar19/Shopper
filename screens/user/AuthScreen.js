@@ -101,6 +101,7 @@ const AuthScreen = props => {
        keyboardVerticalOffset={0}
        style={styles.screen}>
            {/* <LinearGradient colors={['#ffedff','#ffe3ff']} style={styles.gradient}> */}
+           <View style={styles.gradient}>
            <Card style={styles.authContainer}>
                <ScrollView>
         <Input id='email' label='E-Mail' 
@@ -140,6 +141,7 @@ const AuthScreen = props => {
 
                </ScrollView>
            </Card>
+           </View>
            {/* </LinearGradient> */}
        </KeyboardAvoidingView>
 

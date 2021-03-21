@@ -116,7 +116,7 @@ const EditProductScreen = props => {
           <Item
             title="Save"
             iconName={
-              Platform.OS === 'android' ? 'md-checkmark' : 'ios-checkmark'
+              Platform.OS === 'android' ? 'check' : 'check'
             }
             onPress={submitHandler}
           />

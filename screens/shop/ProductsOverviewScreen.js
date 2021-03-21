@@ -106,12 +106,12 @@ export const screenOptions = navData => {
     return{
         headerTitle: 'All Products',
         headerLeft : () => <HeaderButtons HeaderButtonComponent={Headerbutton}>
-        <Item title='Menu' iconName={'md-menu'} onPress={() => {
+        <Item title='Menu' iconName={'bars'} onPress={() => {
             navData.navigation.toggleDrawer();
         }} />
     </HeaderButtons>,
         headerRight: () => <HeaderButtons HeaderButtonComponent={Headerbutton}>
-            <Item title='Cart' iconName={'md-cart'} onPress={() => {
+            <Item title='Cart' iconName={'shopping-cart'} onPress={() => {
                 navData.navigation.navigate('Cart')
             }} />
         </HeaderButtons>

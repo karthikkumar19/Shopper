@@ -47,7 +47,7 @@ export const screenOptions =navData => {
     return{
         headerTitle: 'Your Orders',
         headerLeft : () => <HeaderButtons HeaderButtonComponent={Headerbutton}>
-        <Item title='Menu' iconName={'md-menu'} onPress={() => {
+        <Item title='Menu' iconName={'bars'} onPress={() => {
             navData.navigation.toggleDrawer();
         }} />
     </HeaderButtons>,
