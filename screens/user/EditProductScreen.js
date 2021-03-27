@@ -6,6 +6,7 @@ import {
   Platform,
   Alert,
   KeyboardAvoidingView,
+  Text,
   ActivityIndicator
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
@@ -15,6 +16,7 @@ import HeaderButton from '../../components/UI/Headerbutton';
 import * as productsActions from '../../store/actions/products';
 import Input from '../../components/UI/Input';
 import Colors from '../../constants/Colors';
+import {Picker} from '@react-native-picker/picker';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
@@ -47,18 +49,21 @@ const EditProductScreen = props => {
     state.products.userProducts.find(prod => prod.id === prodId)
   );
   const [loading,setLoading] = useState(false);
+  const [category, setCategory] = useState('Diary');
   const [error, setError] = useState();
   const dispatch = useDispatch();
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
       title: editedProduct ? editedProduct.title : '',
+      category : editedProduct ? editedProduct.category : category,
       imageUrl: editedProduct ? editedProduct.imageUrl : '',
       description: editedProduct ? editedProduct.description : '',
       price: ''
     },
     inputValidities: {
       title: editedProduct ? true : false,
+      category : editedProduct ? true : true,
       imageUrl: editedProduct ? true : false,
       description: editedProduct ? true : false,
       price: editedProduct ? true : false
@@ -88,6 +93,7 @@ const EditProductScreen = props => {
            productsActions.updateProduct(
              prodId,
              formState.inputValues.title,
+             formState.inputValues.category,
              formState.inputValues.description,
              formState.inputValues.imageUrl
            )
@@ -96,6 +102,7 @@ const EditProductScreen = props => {
        await  dispatch(
            productsActions.createProduct(
              formState.inputValues.title,
+             formState.inputValues.category,
              formState.inputValues.description,
              formState.inputValues.imageUrl,
              +formState.inputValues.price
@@ -162,6 +169,25 @@ const EditProductScreen = props => {
             initiallyValid={!!editedProduct}
             required
           />
+          {/* dropdown */}
+          <Text style={{paddingTop:20}}>Select Category</Text>
+          <Picker
+        selectedValue={editedProduct ? editedProduct.category : category}
+        style={{ marginLeft:'-4%',height: 60, width: '50%' }}
+        onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}
+      >
+        <Picker.Item label="Diary" value="diary" />
+        <Picker.Item label="Vegetables" value="vegetables" />
+        <Picker.Item label="Snacks" value="snacks" />
+        <Picker.Item label="Breakfast" value="breakfast" />
+        <Picker.Item label="Beverages" value="beverages" />
+        <Picker.Item label="Health/Beauty" value="health/beauty" />
+        <Picker.Item label="Children" value="children" />
+
+
+      </Picker>
+
+
           <Input
             id="imageUrl"
             label="Image Url"
@@ -200,6 +226,7 @@ const EditProductScreen = props => {
             required
             minLength={5}
           />
+             
         </View>
       </ScrollView>
   );

@@ -13,7 +13,10 @@ switch(action.type){
             orders:action.orders
         }
     case ADD_ORDER:
-        const newOrder = new Order( action.orderData.id, action.orderData.items, action.orderData.amount, action.orderData.date);
+        const newOrder = new Order( action.orderData.id, action.orderData.items,
+            action.orderData.name, action.orderData.address, action.orderData.email,
+            action.orderData.mobile, action.orderData.pincode,
+             action.orderData.amount, action.orderData.date);
 
 return {
     ...state,

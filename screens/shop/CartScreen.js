@@ -28,14 +28,18 @@ const cartItems = useSelector(state => {
 const dispatch = useDispatch();
 
 const sendOrderHandler = async () => {
-    console.log(cartItems)
-    setLoading(true);
-    try{
-        await dispatch(ordersActions.addOrder(cartItems,cartTotalAmount));
-        setLoading(false)
-    } catch(err){
-        console.log(err)
-    }
+    console.log(cartItems);
+    props.navigation.navigate('ConfirmOrder',{
+        cartItems : cartItems,
+        totalAmount: cartTotalAmount
+    })
+    // setLoading(true);
+    // try{
+    //     await dispatch(ordersActions.addOrder(cartItems,cartTotalAmount));
+    //     setLoading(false)
+    // } catch(err){
+    //     console.log(err)
+    // }
 }
     return (
         <View style={styles.screen}>

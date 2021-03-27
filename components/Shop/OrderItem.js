@@ -20,6 +20,38 @@ const OrderItem = props => {
             } } />
             {showDetails && 
                 <View style={styles.detailItem}>
+                    <View style={styles.detailContainer}> 
+                    <Text style={{fontWeight:'bold',textAlign:'center',textDecorationStyle:'dotted',textDecorationLine:'underline',marginBottom:5,fontSize:18}}>Customer Details</Text>
+
+                        <View style={styles.textContainer}>
+                        <Text style={styles.textHeader}>Name:-  </Text>
+                        <Text>{props.name}</Text>
+                        </View>
+
+                        <View style={styles.textContainer}>
+                        <Text style={styles.textHeader}>Address:-  </Text>
+                        <Text>{props.address}</Text>
+                        </View>
+
+                        <View style={styles.textContainer}>
+                        <Text style={styles.textHeader}>Pincode:-  </Text>
+                        <Text>{props.pincode}</Text>
+                        </View>
+
+                        <View style={styles.textContainer}>
+                        <Text style={styles.textHeader}>Email:-  </Text>
+                        <Text>{props.email}</Text>
+                        </View>
+
+                        <View style={styles.textContainer}>
+                        <Text style={styles.textHeader}>Mobile:-  </Text>
+                        <Text>{props.mobile}</Text>
+                        </View>
+                        
+                       
+                   
+
+                    </View>
                     {props.items.map(cartItem => (
                         <CartItem 
                         key={cartItem.productId}
@@ -64,6 +96,19 @@ const styles = StyleSheet.create({
     },
     detailItem:{
         width:'100%'
+    },
+    detailContainer:{
+        margin:20,
+        padding:10
+    },
+    textContainer:{
+            display:'flex',
+            flexDirection:'row',
+            justifyContent:'center',
+            padding:2
+    },
+    textHeader:{
+                fontWeight:'bold'
     }
 })
 

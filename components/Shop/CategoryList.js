@@ -1,34 +1,31 @@
 import React from 'react';
-import {View,Text,StyleSheet,Image,
+import {View,Text,StyleSheet,ImageBackground,Dimensions,
     TouchableNativeFeedback,TouchableOpacity,Platform} from 'react-native';
 
 
 
-const ProductItem = props => {
-   
+const CategoryList = props => {
+
     let Touchablecmp = TouchableOpacity;
-    if(Platform.OS === 'android' ){
+    if(Platform.OS === 'android' && Platform.Version >= 21){
         Touchablecmp = TouchableNativeFeedback
     }
 
     return(
         <Touchablecmp onPress={props.onSelect} >
  <View style={styles.Product}>
-            <View style={styles.imageContainer}>
-            <Image style={styles.image} source={{uri: props.image}}/>
-
-            </View>
-            <View style={styles.details}>
+     
+            <ImageBackground blurRadius={5} style={styles.image} source={{uri:props.image}}>
             <Text style={styles.title}>{props.title}</Text>
-            <Text style={styles.price}>₹ {props.price.toFixed(2)}</Text>
-            </View>
+
+            </ImageBackground>
+
+            
             
             <View style={styles.actions}>
                {props.children}
             </View>
-           
         </View>
-       
         </Touchablecmp>
        
     )
@@ -43,24 +40,27 @@ Product:{
     elevation:5,
     borderRadius:10,
     backgroundColor:'white',
-    height:300,
-    margin:20
+    height:150,
+    width:Dimensions.get('window').width / 2.2 ,
+    margin:8,
 },
 image:{
     width:'100%',
-    height:'100%'
+    height:'100%',
+    borderRadius:10,
+overflow:'hidden',
 },
 imageContainer:{
 width:'100%',
 height:'60%',
-borderTopLeftRadius:10,
-borderTopRightRadius:10,
-overflow:'hidden',
+
 },
 title:{
-    fontSize:18,
-    marginVertical:2,
-    fontFamily:'open-sans-reg'
+    fontSize:20,
+    color:'white',
+   textAlign:'center',
+   fontFamily:'OpenSans-Bold',
+   marginTop:60
 },
 price:{
     fontSize:14,
@@ -77,8 +77,9 @@ actions:{
 details:{
     alignItems:'center',
     height:'15%',
-    padding:10
+    padding:10,
+    zIndex:1
 }
 })
 
-export default ProductItem;
+export default CategoryList;

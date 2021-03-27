@@ -37,7 +37,8 @@ if(orders.length === 0 ){
     return (
       <FlatList data={orders} keyExtractor={item => item.id} 
       renderItem={itemData => <OrderItem amount={itemData.item.totalAmount} 
-      date={itemData.item.readableDate} items={itemData.item.items}/>}
+      date={itemData.item.readableDate} items={itemData.item.items} name={itemData.item.name}
+      address={itemData.item.address} email={itemData.item.email} mobile={itemData.item.mobile} pincode={itemData.item.pincode}  />}
        />
     )
 }

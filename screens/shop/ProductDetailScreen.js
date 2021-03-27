@@ -1,16 +1,26 @@
-import React from 'react';
-import {ScrollView,View,Text,Image,Button,StyleSheet} from 'react-native';
+import React ,{useState}from 'react';
+import {ScrollView,View,Text,Image,Button,StyleSheet,TouchableOpacity} from 'react-native';
 import {useSelector,useDispatch} from 'react-redux';
+
+import AwesomeAlert from 'react-native-awesome-alerts';
 import Colors from '../../constants/Colors';
 import * as cartActions from '../../store/actions/cart';
 
 const ProductDetailScreen= props => {
+    const [showAlert,setShowAlert] = useState(false);
 
     const dispatch = useDispatch();
 const productId = props.route.params.productId;
 const selectedProduct = useSelector(state =>
      state.products.availableProducts.find(prod => prod.id === productId))
 
+    const showAlertFunction = () => {
+        setShowAlert(true)
+      };
+     
+    const  hideAlert = () => {
+       setShowAlert(false)
+      };
 
     return (
        <ScrollView>
@@ -18,11 +28,31 @@ const selectedProduct = useSelector(state =>
            <View style={styles.actions}>
            <Button color={Colors.primary} title='Add to Cart' onPress={() => {
                dispatch(cartActions.addToCart(selectedProduct))
+               showAlertFunction();
            }} />
 
            </View>
            <Text style={styles.price}>$ {selectedProduct.price.toFixed(2)}</Text>
            <Text style={styles.description}>{selectedProduct.description}</Text>
+           <AwesomeAlert
+          show={showAlert}
+          showProgress={false}
+          title=""
+          message={selectedProduct.title + " " + 'added to cart'}
+          closeOnTouchOutside={true}
+          closeOnHardwareBackPress={false}
+          showCancelButton={false}
+          showConfirmButton={true}
+        //   cancelText="No, cancel"
+          confirmText="Okay"
+          confirmButtonColor="#DD6B55"
+          onCancelPressed={() => {
+            hideAlert();
+          }}
+          onConfirmPressed={() => {
+            hideAlert();
+          }}
+        />
        </ScrollView>
     )
 }
@@ -34,6 +64,7 @@ export const screenOptions = navData => {
 
 const styles = StyleSheet.create({
 image:{
+    marginTop:10,
     width:'100%',
     height:300
 },

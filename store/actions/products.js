@@ -22,6 +22,7 @@ export const fetchProduct = () => {
                        key,
                        resData[key].ownerId,
                        resData[key].title,
+                       resData[key].category,
                        resData[key].imageUrl,
                        resData[key].description,
                        resData[key].price
@@ -57,7 +58,7 @@ export const deleteProduct = productId => {
      }
 }
 
-export const createProduct = (title, description, imageUrl, price) => {
+export const createProduct = (title,category, description, imageUrl, price) => {
     return async (dispatch,getState) => {
         //any async code you want!
         // let pushToken;
@@ -80,6 +81,7 @@ export const createProduct = (title, description, imageUrl, price) => {
             },
             body: JSON.stringify({
                 title,
+                category,
                 description,
                 imageUrl,
                 price,
@@ -94,6 +96,7 @@ export const createProduct = (title, description, imageUrl, price) => {
             productData:{
                 id:resData.name,
                 title,
+                category,
                 description,
                 price,
                 imageUrl,
@@ -104,7 +107,7 @@ export const createProduct = (title, description, imageUrl, price) => {
   
 };
 
-export const updateProduct = (id, title, description, imageUrl) => {
+export const updateProduct = (id, title,category, description, imageUrl) => {
     return async (dispatch,getState) => {
         const token = getState().auth.token;
 
@@ -115,6 +118,7 @@ export const updateProduct = (id, title, description, imageUrl) => {
             },
             body: JSON.stringify({
                 title,
+                category,
                 description,
                 imageUrl,
             })
@@ -130,6 +134,7 @@ export const updateProduct = (id, title, description, imageUrl) => {
                 pid: id,
                 productData:{
                     title,
+                    category,
                     description,
                     
                     imageUrl

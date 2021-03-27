@@ -7,8 +7,22 @@ import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import Headerbutton from '../../components/UI/Headerbutton';
 import Colors from '../../constants/Colors';
 import * as productsActions from '../../store/actions/products';
+import AwesomeAlert from 'react-native-awesome-alerts';
+
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Setting a timer']);
 
 const ProductsOverviewScreen = props => {
+    const [showAlert,setShowAlert] = useState(false);
+
+    const showAlertFunction = () => {
+        setShowAlert(true)
+      };
+     
+    const  hideAlert = () => {
+       setShowAlert(false)
+      };
     const dispatch = useDispatch();
     const products = useSelector(state => state.products.availableProducts);
     const userProduct = useSelector(state => state.products.userProducts)
@@ -22,7 +36,6 @@ const ProductsOverviewScreen = props => {
         setError(null)
         try{
             await dispatch(productsActions.fetchProduct());
-           
         } catch (err) {
             setError(err.message)
         }
@@ -82,21 +95,48 @@ if(!loading && products.length === 0){
     )
 }
 
+if(products){
+    console.log(products)
+}
+
     return(
+        
         <FlatList 
         onRefresh={loadProducts}
         refreshing={refreshing}
-         data={products} renderItem={itemData => <ProductItem image={itemData.item.imageUrl}
+         data={products} renderItem={
+             
+             itemData => <ProductItem image={itemData.item.imageUrl}
         title={itemData.item.title} price={itemData.item.price} 
         onSelect={() => {
             selectItemHandler(itemData.item.id,itemData.item.title)
         }}
         >
+             <AwesomeAlert
+          show={showAlert}
+          showProgress={false}
+          title=""
+          message={ 'added to cart'}
+          closeOnTouchOutside={true}
+          closeOnHardwareBackPress={false}
+          showCancelButton={false}
+          showConfirmButton={true}
+        //   cancelText="No, cancel"
+          confirmText="Okay"
+          confirmButtonColor="#DD6B55"
+          onCancelPressed={() => {
+            hideAlert();
+          }}
+          onConfirmPressed={() => {
+            hideAlert();
+          }}
+        />
              <Button color={Colors.primary} title='View Details' onPress={() => {
             selectItemHandler(itemData.item.id,itemData.item.title)
         }}/>
                 <Button color={Colors.primary} title='To Cart' onPress={() => {
             dispatch(cartActions.addToCart(itemData.item))
+            showAlertFunction()
         }} />
         </ProductItem>}/>
     )

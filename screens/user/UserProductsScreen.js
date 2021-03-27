@@ -53,7 +53,7 @@ const UserProductsScreen = props => {
 
 export const screenOptions =navData => {
     return{
-        headerTitle: 'User Products',
+        headerTitle: 'Admin Products',
         headerLeft : () => <HeaderButtons HeaderButtonComponent={Headerbutton}>
         <Item title='Menu' iconName={'bars'} onPress={() => {
             navData.navigation.toggleDrawer();

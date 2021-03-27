@@ -6,8 +6,11 @@ import {Platform, SafeAreaView, ScrollView, View, Text,TouchableOpacity,StyleShe
 import ProductsOverviewScreen,{screenOptions as productsOverviewScreenOptions} from '../screens/shop/ProductsOverviewScreen';
 
 import ProductDetailScreen,{screenOptions as productDetailScreenOptions} from '../screens/shop/ProductDetailScreen';
+import CategoryOverViewScreen,{screenOptions as CategoryOverviewScreenOptions} from '../screens/shop/CategoryOverViewScreen';
+import CategoryProductsScreen, {screenOptions as CategoryProductsScreenOptions}from '../screens/shop/CategoryProductsScreen';
 import OrdersScreen, {screenOptions as ordersScreenOptions} from '../screens/shop/OrdersScreen';
 import CartScreen,{screenOptions as cartScreenOptions} from '../screens/shop/CartScreen';
+import CartConfirmScreen,{screenOptions as cartConfirmScreenOptions} from '../screens/shop/CartConfirmScreen';
 import AuthScreen,{screenOptions as authScreenOptions} from '../screens/user/AuthScreen';
 import UserProductsScreen ,{screenOptions as userProductsScreenOptions} from '../screens/user/UserProductsScreen';
 import EditProductScreen ,{screenOptions as editProductsScreenOptions}from '../screens/user/EditProductScreen';
@@ -43,8 +46,35 @@ export const ProductsNavigator = () => {
         <ProductsStackNavigator.Screen name="Cart"
         component={CartScreen} 
         options={cartScreenOptions}/>
+         <ProductsStackNavigator.Screen name="ConfirmOrder"
+        component={CartConfirmScreen} 
+        options={cartConfirmScreenOptions}/>
 
     </ProductsStackNavigator.Navigator>
+    )
+}
+
+const CategoryStackNavigator = createStackNavigator();
+
+export const CategoryNavigator = () => {
+    return(
+        <CategoryStackNavigator.Navigator screenOptions={defaultNavOptions}>
+            <CategoryStackNavigator.Screen name="Categories"
+            component={CategoryOverViewScreen}
+             options={CategoryOverviewScreenOptions} />
+             {/* <CategoryStackNavigator.Screen name="Add Category"
+            component={AddCategoryScreen} 
+            options={AddCategoryScreenOptions} /> */}
+            <CategoryStackNavigator.Screen name="CategoryName"
+            component={CategoryProductsScreen} 
+            options={CategoryProductsScreenOptions} />
+             <CategoryStackNavigator.Screen name="Cart"
+            component={CartScreen} 
+            options={cartScreenOptions} />
+            <CategoryStackNavigator.Screen name="ProductDetail"
+            component={ProductDetailScreen} 
+            options={productDetailScreenOptions} />
+        </CategoryStackNavigator.Navigator>
     )
 }
 
@@ -144,11 +174,19 @@ export const ShopNavigator = () => {
               <Icon name='shopping-basket' size={23} color={props.Color} /> )
                         }
             } />
+            <ShopDrawerNavigator.Screen name="Category" 
+            component={CategoryNavigator} 
+            options={
+                {
+            drawerIcon: props => ( 
+              <Icon name='th-large' size={23} color={props.Color} /> )
+                        }
+            } />
               <ShopDrawerNavigator.Screen name="Orders" 
             component={OrdersNavigator} options={
                 {
              drawerIcon: props => ( 
-         <Icon name='list-ul' size={23} color={props.Color} /> )
+         <Icon name='history' size={23} color={props.Color} /> )
                         }
             } />
               <ShopDrawerNavigator.Screen name="Admin" 
