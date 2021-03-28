@@ -4,9 +4,11 @@ import Headerbutton from '../../components/UI/Headerbutton';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import CategoryList from '../../components/Shop/CategoryList';
 
+import { LogBox } from 'react-native';
 
 
 const  CategoryOverViewScreen = props => {
+    LogBox.ignoreLogs(['Warning: Async Storage has been extracted from react-native core']);
 
     const selectCategoryHandler = (category) => {
         props.navigation.navigate('CategoryName',{

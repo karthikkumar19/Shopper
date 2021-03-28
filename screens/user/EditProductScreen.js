@@ -89,20 +89,23 @@ const EditProductScreen = props => {
     setLoading(true);
     try{
       if (editedProduct) {
+        console.log(category)
+
         await dispatch(
            productsActions.updateProduct(
              prodId,
              formState.inputValues.title,
-             formState.inputValues.category,
+             category,
              formState.inputValues.description,
              formState.inputValues.imageUrl
            )
          );
        } else {
+         console.log(category)
        await  dispatch(
            productsActions.createProduct(
              formState.inputValues.title,
-             formState.inputValues.category,
+             category,
              formState.inputValues.description,
              formState.inputValues.imageUrl,
              +formState.inputValues.price
@@ -172,17 +175,20 @@ const EditProductScreen = props => {
           {/* dropdown */}
           <Text style={{paddingTop:20}}>Select Category</Text>
           <Picker
-        selectedValue={editedProduct ? editedProduct.category : category}
+        selectedValue={ category}
         style={{ marginLeft:'-4%',height: 60, width: '50%' }}
-        onValueChange={(itemValue, itemIndex) => setCategory(itemValue)}
+        selectedValue={category}
+        onValueChange={(itemValue, itemIndex) => {
+          setCategory(itemValue)
+        console.log(category)}}
       >
-        <Picker.Item label="Diary" value="diary" />
-        <Picker.Item label="Vegetables" value="vegetables" />
-        <Picker.Item label="Snacks" value="snacks" />
-        <Picker.Item label="Breakfast" value="breakfast" />
-        <Picker.Item label="Beverages" value="beverages" />
-        <Picker.Item label="Health/Beauty" value="health/beauty" />
-        <Picker.Item label="Children" value="children" />
+        <Picker.Item label="Diary" value="Diary" />
+        <Picker.Item label="Vegetables" value="Vegetables" />
+        <Picker.Item label="Snacks" value="Snacks" />
+        <Picker.Item label="Breakfast" value="Breakfast" />
+        <Picker.Item label="Beverages" value="Beverages" />
+        <Picker.Item label="Health/Beauty" value="Health/Beauty" />
+        <Picker.Item label="Children" value="Children" />
 
 
       </Picker>

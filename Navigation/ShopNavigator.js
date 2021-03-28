@@ -98,6 +98,7 @@ export const AdminNavigator = () => {
             <AdminStackNavigator.Screen name="UserProducts"
             component={UserProductsScreen} 
             options={userProductsScreenOptions}/>
+           
             <AdminStackNavigator.Screen name="EditProduct"
             component={EditProductScreen}
             options={editProductsScreenOptions} />

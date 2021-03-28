@@ -5,15 +5,12 @@ import {
   StyleSheet,
   Platform,
   Alert,
-  KeyboardAvoidingView,
   Button,
   Text,
   ActivityIndicator
 } from 'react-native';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
 
-import HeaderButton from '../../components/UI/Headerbutton';
 import * as ordersActions from '../../store/actions/orders';
 import Input from '../../components/UI/Input';
 import Colors from '../../constants/Colors';
@@ -108,7 +105,7 @@ const CartConfirmScreen = props => {
            )
          );
        
-       props.navigation.goBack();
+       props.navigation.navigate('ProductsOverview');
     } catch (err){
       setError(err.message)
     }

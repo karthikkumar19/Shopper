@@ -6,6 +6,9 @@ import Card from '../../components/UI/Card';
 import Colors from '../../constants/Colors';
 import * as authActions from '../../store/actions/auth';
 import {useDispatch} from 'react-redux';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Warning: Async Storage has been extracted from react-native core']);
 
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';

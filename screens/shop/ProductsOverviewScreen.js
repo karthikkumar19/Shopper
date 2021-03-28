@@ -1,5 +1,5 @@
 import React ,{useEffect, useState, useCallback}from 'react';
-import {FlatList,Button, ActivityIndicator,View, StyleSheet,Text, YellowBox } from 'react-native';
+import {FlatList,Button, ActivityIndicator,View, StyleSheet,Text } from 'react-native';
 import {useSelector,useDispatch} from 'react-redux';
 import ProductItem from '../../components/Shop/ProductItem';
 import * as cartActions from '../../store/actions/cart';
@@ -10,8 +10,9 @@ import * as productsActions from '../../store/actions/products';
 import AwesomeAlert from 'react-native-awesome-alerts';
 
 import { LogBox } from 'react-native';
-
+LogBox.ignoreAllLogs();
 LogBox.ignoreLogs(['Setting a timer']);
+LogBox.ignoreLogs(['Warning: Async Storage has been extracted from react-native core']);
 
 const ProductsOverviewScreen = props => {
     const [showAlert,setShowAlert] = useState(false);
@@ -25,7 +26,6 @@ const ProductsOverviewScreen = props => {
       };
     const dispatch = useDispatch();
     const products = useSelector(state => state.products.availableProducts);
-    const userProduct = useSelector(state => state.products.userProducts)
     const [loading,setLoading] = useState(false);
     const [refreshing,setRefreshing] = useState(false);
     const [error, setError] = useState('');
